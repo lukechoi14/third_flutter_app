@@ -42,13 +42,63 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height:height*0.04),
-                Text("Here to Get", style: TextStyle(fontSize: 30, color:Color(0xFF363f93)),),
-                Text("Welcomed !", style: TextStyle(fontSize: 30, color:Color(0xFF363f93)),),
-
+                Text("Dart 정규표현식", style: TextStyle(fontSize: 30, color:Color(0xFF363f93)),),
+                Text("체크!", style: TextStyle(fontSize: 30, color:Color(0xFF363f93)),),
+                SizedBox(height: height*0.05,),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Enter your name",
+                  ),
+                  validator: (value){
+                    if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                      return "Enter correct name";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: height*0.05,),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Enter your phone",
+                  ),
+                  validator: (value){
+                    if(value!.isEmpty || !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$').hasMatch(value)){
+                      return "Enter correct phone number";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: height*0.05,),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Enter your email",
+                  ),
+                  validator: (value){
+                    if(value!.isEmpty || !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}').hasMatch(value)){
+                      return "Enter correct email";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: height*0.05,),
+                Row(
+                  children: [
+                    Text("Sign up", style: TextStyle(fontSize: 22,color: Color(0xFF363f93)),),
+                    ElevatedButton(onPressed: (){
+                     if(formKey.currentState!.validate()){
+                       //form data가 맞는지 확인
+                       final snackBar = SnackBar(content: Text('submitting form'));
+                       _scaffoldKey.currentState!.showSnackBar(snackBar);
+                     }
+                    }, child: Text("Sign up"))
               ],
-            ),
+            ),]
           ),
         )
+    ),
     );
   }
 
