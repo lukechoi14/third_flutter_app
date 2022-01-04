@@ -38,7 +38,10 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.only(left: 40, right: 40),
           child: Form(
             key: formKey, //key for form
-            child:Column(
+            child:  SingleChildScrollView(
+              physics: ScrollPhysics(),
+              child:
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height:height*0.04),
@@ -96,7 +99,7 @@ class _HomeState extends State<Home> {
                     }, child: Text("Sign up"))
               ],
             ),]
-          ),
+          ),)
         )
     ),
     );
